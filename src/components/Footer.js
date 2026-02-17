@@ -33,9 +33,9 @@ export default function Footer() {
 
                     <div className="footer-section">
                         <h4>{t('contactInfo')}</h4>
-                        <a href="tel:+919876543210">📞 +91 98765 43210</a>
+                        <a href="tel:+918601439557">📞 +91 86014 39557</a>
                         <a href="mailto:support@medexpress.in">📧 support@medexpress.in</a>
-                        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+                        <a href="https://wa.me/918601439557" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
                     </div>
                 </div>
 

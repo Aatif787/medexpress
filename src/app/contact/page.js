@@ -21,7 +21,7 @@ export default function ContactPage() {
                     {/* Contact Info */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                         {[
-                            { icon: <Phone size={24} />, title: 'Call Us', value: '+91 98765 43210', link: 'tel:+919876543210' },
+                            { icon: <Phone size={24} />, title: 'Call Us', value: '+91 86014 39557', link: 'tel:+918601439557' },
                             { icon: <Mail size={24} />, title: 'Email Us', value: 'support@medexpress.in', link: 'mailto:support@medexpress.in' },
                             { icon: <Clock size={24} />, title: 'Operating Hours', value: '8:00 AM - 10:00 PM', sub: 'Every Day (Mon-Sun)' },
                             { icon: <MapPin size={24} />, title: 'Service Area', value: 'Domariyaganj & Basti', sub: 'Uttar Pradesh, India' }
