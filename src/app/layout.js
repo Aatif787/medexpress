@@ -9,6 +9,9 @@ export const metadata = {
   title: "MedExpress | Premium Medicine Delivery",
   description: "Fast, reliable medicine delivery in Domariyaganj.",
   manifest: "/manifest.json",
+};
+
+export const viewport = {
   themeColor: "#0f766e",
 };
 
