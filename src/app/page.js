@@ -152,7 +152,7 @@ export default function Home() {
                   <div className="glass-panel hero-mini" style={{ padding: '6px', overflow: 'hidden', width: '132px', height: '132px', minWidth: '132px', borderRadius: '22px' }}>
                     <div style={{ width: '100%', height: '100%', borderRadius: '16px', overflow: 'hidden', background: 'rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <Image
-                        src="/img.png"
+                        src="/globe.svg"
                         alt="Live coverage"
                         width={120}
                         height={120}
