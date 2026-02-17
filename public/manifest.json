@@ -1,0 +1,21 @@
+{
+    "name": "MedExpress",
+    "short_name": "MedExpress",
+    "description": "Premium Medicine Delivery Service in Domariyaganj",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#0f766e",
+    "icons": [
+        {
+            "src": "/icon.svg",
+            "sizes": "192x192",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "/icon.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml"
+        }
+    ]
+}
