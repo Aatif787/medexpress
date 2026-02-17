@@ -1,9 +1,11 @@
 import { ClerkProvider } from '@clerk/nextjs'
 import './globals.css';
-import { Outfit } from "next/font/google";
+import { Poppins, Inter, Montserrat } from "next/font/google";
 import ClientLayout from "./ClientLayout";
 
-const outfit = Outfit({ subsets: ["latin"] });
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-poppins" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const montserrat = Montserrat({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-montserrat" });
 
 export const metadata = {
   title: "MedExpress | Premium Medicine Delivery",
@@ -19,7 +21,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={outfit.className}>
+        <body className={`${inter.variable} ${poppins.variable} ${montserrat.variable}`}>
           <ClientLayout>{children}</ClientLayout>
         </body>
       </html>

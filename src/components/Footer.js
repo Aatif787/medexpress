@@ -10,11 +10,15 @@ export default function Footer() {
             <div className="container">
                 <div className="footer-grid">
                     <div className="footer-brand">
-                        <h3>💊 MedExpress</h3>
+                        <h3>MedExpress</h3>
                         <p>{t('tagline')}</p>
                         <p style={{ fontSize: '0.85rem' }}>
                             Domariyaganj, Basti, UP - 272189
                         </p>
+                        <div className="trust-strip" style={{ marginTop: '16px', justifyContent: 'flex-start' }}>
+                            <span className="badge badge-success">Licensed Pharmacy</span>
+                            <span className="badge">Secure Payments</span>
+                        </div>
                     </div>
 
                     <div className="footer-section">
@@ -22,6 +26,8 @@ export default function Footer() {
                         <Link href="/">{t('home')}</Link>
                         <Link href="/upload">{t('upload')}</Link>
                         <Link href="/track">{t('track')}</Link>
+                        <Link href="/medicines">Medicines</Link>
+                        <Link href="/consultation">Consultation</Link>
                         <Link href="/contact">{t('contact')}</Link>
                     </div>
 
@@ -29,6 +35,7 @@ export default function Footer() {
                         <h4>{t('legal')}</h4>
                         <Link href="/privacy">{t('privacyPolicy')}</Link>
                         <Link href="/terms">{t('termsOfService')}</Link>
+                        <Link href="/health-tips">Health Tips</Link>
                     </div>
 
                     <div className="footer-section">
@@ -36,6 +43,9 @@ export default function Footer() {
                         <a href="tel:+918601439557">📞 +91 86014 39557</a>
                         <a href="mailto:support@medexpress.in">📧 support@medexpress.in</a>
                         <a href="https://wa.me/918601439557" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+                        <p style={{ marginTop: '12px', color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>
+                            Licensed Pharmacist on Duty
+                        </p>
                     </div>
                 </div>
 

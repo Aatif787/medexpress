@@ -55,7 +55,7 @@ export default function WhatsAppButton() {
                 pointerEvents: 'none',
                 border: '1px solid rgba(255,255,255,0.1)'
             }}>
-                Chat with Pharmacist
+                Need Help? Order on WhatsApp
             </div>
 
             <style jsx>{`

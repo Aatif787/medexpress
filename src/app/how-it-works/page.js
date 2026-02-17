@@ -8,26 +8,26 @@ export default function HowItWorks() {
         {
             icon: <Upload size={40} />,
             title: "1. Upload Prescription",
-            desc: "Snap a clear photo of your prescription. Our AI instantly parses the details for accuracy.",
+            desc: "Snap a clear photo of your prescription and share it in seconds.",
             color: "var(--primary)",
             image: "https://cdn.jsdelivr.net/gh/realvjy/3dicons@main/files/blue/dynamic/camera-dynamic-blue.png",
             label: "Smart Upload"
         },
         {
             icon: <CheckCircle size={40} />,
-            title: "2. Pharmacist Review",
-            desc: "Licensed pharmacists verify every item. We source directly from authorized distributors.",
+            title: "2. Lucknow Partner Pharmacy",
+            desc: "We purchase medicines from trusted partner pharmacies with verified billing.",
             color: "var(--accent)",
             image: "https://cdn.jsdelivr.net/gh/realvjy/3dicons@main/files/blue/dynamic/shield-dynamic-blue.png",
-            label: "Quality Check"
+            label: "Verified Purchase"
         },
         {
             icon: <Truck size={40} />,
-            title: "3. Swift Delivery",
-            desc: "Your personal runner picks up the fresh stock and delivers it to your doorstep in hours.",
+            title: "3. Home Delivery in Domariyaganj",
+            desc: "Next-day delivery to Domariyaganj and nearby towns.",
             color: "#f59e0b",
             image: "https://cdn.jsdelivr.net/gh/realvjy/3dicons@main/files/blue/dynamic/car-dynamic-blue.png",
-            label: "Doorstep Drop"
+            label: "Doorstep Delivery"
         }
     ];
 

@@ -1,32 +1,17 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Upload, Truck, Shield, Clock, ChevronRight, Star, Quote, ArrowRight, PlayCircle, HeartPulse, MapPin, ShoppingBag, Phone, MessageCircle, ShieldCheck, CalendarClock, CreditCard, ChevronDown, ChevronUp } from 'lucide-react';
-import { useLanguage } from '@/context/LanguageContext';
-import { useState, useEffect } from 'react';
+import { Upload, Truck, Shield, Quote, ArrowRight, HeartPulse, MapPin, ShoppingBag, MessageCircle, ShieldCheck, CalendarClock, ChevronDown, ChevronUp, CheckCircle, Stethoscope, Pill, Bandage, Baby, Heart, ClipboardCheck, ShieldPlus } from 'lucide-react';
+import { useState } from 'react';
 import TiltCard from '@/components/TiltCard';
 import CountUp from '@/components/CountUp';
 
 export default function Home() {
-  const { t } = useLanguage();
-  const [typedText, setTypedText] = useState('');
-  const fullText = "Medicine Delivery";
   const [heroSrc, setHeroSrc] = useState('/hero_delivery.svg');
   const [activeFaq, setActiveFaq] = useState(null);
 
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      setTypedText(fullText.substring(0, index));
-      index++;
-      if (index > fullText.length) clearInterval(interval);
-    }, 150);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div style={{ overflowX: 'hidden' }}>
-      {/* HERO SECTION */}
       <section style={{
         minHeight: '100vh', display: 'flex', alignItems: 'center', position: 'relative',
         paddingTop: '80px', perspective: '1000px'
@@ -39,7 +24,6 @@ export default function Home() {
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px', alignItems: 'center', maxWidth: '1200px', margin: '0 auto' }} className="hero-grid">
 
-            {/* Text Content */}
             <div style={{ zIndex: 10, paddingRight: '40px' }} className="hero-text-content">
               <div style={{
                 display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', borderRadius: '50px',
@@ -50,66 +34,52 @@ export default function Home() {
                   <span style={{ position: 'absolute', display: 'inline-flex', height: '100%', width: '100%', borderRadius: '50%', background: 'var(--primary)', opacity: 0.75, animation: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite' }}></span>
                   <span style={{ position: 'relative', display: 'inline-flex', borderRadius: '50%', height: '10px', width: '10px', background: 'var(--primary)' }}></span>
                 </span>
-                We Buy & Deliver For You
+                Trusted Partner Pharmacies
               </div>
 
               <h1 style={{ marginBottom: '24px', lineHeight: 1.2 }}>
-                <span style={{ display: 'block', whiteSpace: 'nowrap', fontSize: 'clamp(1.8rem, 4vw, 3.5rem)', color: 'var(--text-main)' }}>
-                  Premium <span style={{ color: 'var(--primary-light)' }}>{typedText}</span><span className="animate-glow" style={{ color: 'var(--accent)' }}>|</span>
+                <span style={{ display: 'block', fontSize: 'clamp(2.1rem, 4.6vw, 3.9rem)', color: 'var(--text-main)' }}>
+                  Order Medicines Online — Delivered to Your Door
                 </span>
-                <span style={{ display: 'block', fontSize: 'clamp(1.8rem, 4vw, 3.5rem)' }}>Direct to Your Door</span>
               </h1>
 
-              <div className="glass-panel" style={{ padding: '24px', marginBottom: '40px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                {/* Step 1 */}
-                <div style={{ display: 'flex', gap: '16px', position: 'relative' }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', zIndex: 2 }}>
-                      <Upload size={20} />
-                    </div>
-                    <div style={{ width: '2px', height: '100%', background: 'rgba(255,255,255,0.2)', minHeight: '30px' }}></div>
-                  </div>
-                  <div style={{ paddingBottom: '24px' }}>
-                    <h4 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--text-main)' }}>1. Upload Prescription</h4>
-                    <p style={{ margin: '4px 0 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Snap a photo. We handle the rest.</p>
-                  </div>
-                </div>
+              <p style={{ fontSize: '1.15rem', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '24px' }}>
+                Upload your prescription and get genuine medicines delivered from Lucknow to Domariyaganj & nearby towns.
+              </p>
 
-                {/* Step 2 */}
-                <div style={{ display: 'flex', gap: '16px', position: 'relative' }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', zIndex: 2 }}>
-                      <ShoppingBag size={20} />
-                    </div>
-                    <div style={{ width: '2px', height: '100%', background: 'rgba(255,255,255,0.2)', minHeight: '30px' }}></div>
+              <div style={{ display: 'grid', gap: '12px', marginBottom: '32px' }}>
+                {[
+                  'Prescription Required',
+                  'Next-Day Delivery',
+                  'Genuine Medicines at MRP',
+                  'WhatsApp Support Available'
+                ].map((item) => (
+                  <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--text-main)', fontWeight: 600 }}>
+                    <CheckCircle size={18} color="var(--accent)" />
+                    <span>{item}</span>
                   </div>
-                  <div style={{ paddingBottom: '24px' }}>
-                    <h4 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--text-main)' }}>2. Personal Shopper</h4>
-                    <p style={{ margin: '4px 0 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>We buy from trusted partners.</p>
-                  </div>
-                </div>
-
-                {/* Step 3 */}
-                <div style={{ display: 'flex', gap: '16px', position: 'relative' }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'var(--highlight)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', zIndex: 2 }}>
-                      <Truck size={20} />
-                    </div>
-                  </div>
-                  <div>
-                    <h4 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--text-main)' }}>3. Instant Delivery</h4>
-                    <p style={{ margin: '4px 0 0', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Direct to your doorstep.</p>
-                  </div>
-                </div>
+                ))}
               </div>
 
-              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
                 <Link href="/upload" className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '1.1rem' }}>
-                  <Upload size={20} /> Order Now
+                  <Upload size={20} /> Upload Prescription Now
                 </Link>
-                <Link href="/how-it-works" className="btn btn-glass" style={{ padding: '16px 32px', fontSize: '1.1rem' }}>
-                  <PlayCircle size={20} /> How It Works
-                </Link>
+                <a
+                  href="https://wa.me/918601439557"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-glass"
+                  style={{ padding: '16px 32px', fontSize: '1.1rem' }}
+                >
+                  <MessageCircle size={20} /> Order via WhatsApp
+                </a>
+              </div>
+
+              <div className="trust-strip" style={{ justifyContent: 'flex-start', marginTop: '20px' }}>
+                <span className="badge badge-success"><ShieldCheck size={14} /> Verified Pharmacy</span>
+                <span className="badge"><Stethoscope size={14} /> Licensed Pharmacists</span>
+                <span className="badge badge-dark"><ShieldPlus size={14} /> Secure Payments</span>
               </div>
 
               <div style={{ marginTop: '50px', display: 'flex', gap: '40px', flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -117,24 +87,23 @@ export default function Home() {
                   <h3 style={{ fontSize: '2.5rem', color: 'var(--primary)' }}>
                     <CountUp end={5000} suffix="+" />
                   </h3>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Happy Customers</p>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>Orders Delivered</p>
                 </div>
                 <div className="stats-card">
                   <h3 style={{ fontSize: '2.5rem', color: 'var(--primary)' }}>
                     <CountUp end={4.9} />
                   </h3>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Trust Score</p>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>Average Rating</p>
                 </div>
               </div>
             </div>
 
-            {/* Visual/3D Element */}
             <div style={{ position: 'relative', display: 'flex', justifyContent: 'center' }} className="hero-visual">
               <div className="hero-stack">
                 <TiltCard className="animate-float hero-main-card" style={{ border: 'none', background: 'transparent', boxShadow: 'none' }}>
                   <Image
                     src={heroSrc}
-                    alt="Personal Delivery Service"
+                    alt="Medicine delivery rider"
                     width={740}
                     height={540}
                     priority
@@ -153,7 +122,7 @@ export default function Home() {
                     <div style={{ width: '100%', height: '100%', borderRadius: '16px', overflow: 'hidden', background: 'rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <Image
                         src="/globe.svg"
-                        alt="Live coverage"
+                        alt="Lucknow to Domariyaganj"
                         width={120}
                         height={120}
                         style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
@@ -163,14 +132,14 @@ export default function Home() {
                 </div>
                 <div className="hero-float hero-float-two">
                   <div className="glass-panel hero-mini">
-                    <Image src="/file.svg" alt="Verified prescription" width={120} height={120} className="hero-mini-image" unoptimized />
-                    <span className="hero-mini-text">Verified Rx</span>
+                    <Image src="/file.svg" alt="Prescription upload" width={120} height={120} className="hero-mini-image" unoptimized />
+                    <span className="hero-mini-text">Prescription Upload</span>
                   </div>
                 </div>
                 <div className="hero-float hero-float-three">
                   <div className="glass-panel hero-mini">
-                    <Image src="/window.svg" alt="Delivery updates" width={120} height={120} className="hero-mini-image" unoptimized />
-                    <span className="hero-mini-text">Fast Updates</span>
+                    <Image src="/window.svg" alt="Route updates" width={120} height={120} className="hero-mini-image" unoptimized />
+                    <span className="hero-mini-text">Lucknow → Domariyaganj</span>
                   </div>
                 </div>
               </div>
@@ -179,7 +148,131 @@ export default function Home() {
         </div>
       </section>
 
-      {/* BENTO GRID FEATURES */}
+      <section style={{ padding: '0 0 100px' }}>
+        <div className="container">
+          <h2 style={{ textAlign: 'center', marginBottom: '12px' }}>How It Works</h2>
+          <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '50px' }}>Three simple steps from prescription to doorstep</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px' }}>
+            <div className="glass-panel card-hover" style={{ padding: '28px', position: 'relative' }}>
+              <div style={{ width: '52px', height: '52px', borderRadius: '16px', background: 'rgba(59, 130, 246, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '18px' }}>
+                <Upload size={24} color="var(--primary)" />
+              </div>
+              <h3 style={{ margin: '0 0 10px' }}>Upload Prescription</h3>
+              <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 1.6 }}>Send a clear photo of your prescription in seconds.</p>
+            </div>
+            <div className="glass-panel card-hover" style={{ padding: '28px', position: 'relative' }}>
+              <div style={{ width: '52px', height: '52px', borderRadius: '16px', background: 'rgba(16, 185, 129, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '18px' }}>
+                <ShoppingBag size={24} color="var(--accent)" />
+              </div>
+              <h3 style={{ margin: '0 0 10px' }}>Lucknow Partner Pharmacy</h3>
+              <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 1.6 }}>We purchase medicines from trusted, licensed pharmacies.</p>
+            </div>
+            <div className="glass-panel card-hover" style={{ padding: '28px', position: 'relative' }}>
+              <div style={{ width: '52px', height: '52px', borderRadius: '16px', background: 'rgba(245, 158, 11, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '18px' }}>
+                <Truck size={24} color="var(--highlight)" />
+              </div>
+              <h3 style={{ margin: '0 0 10px' }}>Home Delivery in Domariyaganj</h3>
+              <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 1.6 }}>Next-day delivery to Domariyaganj and nearby towns.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '0 0 100px' }}>
+        <div className="container">
+          <h2 className="section-title">Browse Medicine Categories</h2>
+          <p className="section-subtitle">Find the right treatment fast with curated categories</p>
+          <div className="grid-4">
+            {[
+              { label: 'Cold & Cough', icon: <Bandage size={22} color="var(--primary)" /> },
+              { label: 'Heart Care', icon: <Heart size={22} color="var(--accent)" /> },
+              { label: 'Diabetes', icon: <ClipboardCheck size={22} color="var(--primary)" /> },
+              { label: 'Women Health', icon: <Stethoscope size={22} color="var(--highlight)" /> },
+              { label: 'Baby Care', icon: <Baby size={22} color="var(--primary)" /> },
+              { label: 'Vitamins', icon: <Pill size={22} color="var(--accent)" /> },
+              { label: 'First Aid', icon: <Shield size={22} color="var(--primary)" /> },
+              { label: 'Skin Care', icon: <HeartPulse size={22} color="var(--highlight)" /> }
+            ].map((category) => (
+              <Link key={category.label} href="/medicines" className="card card-hover" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <div className="icon-circle">{category.icon}</div>
+                <div>
+                  <h4 style={{ margin: 0, color: 'var(--text-main)' }}>{category.label}</h4>
+                  <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)' }}>View products</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '0 0 100px' }}>
+        <div className="container">
+          <div className="card" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '28px', alignItems: 'center' }}>
+            <div>
+              <span className="badge badge-success">Doctor Consultation</span>
+              <h2 style={{ margin: '16px 0 12px' }}>Book a Consultation with Verified Doctors</h2>
+              <p style={{ color: 'var(--text-muted)', lineHeight: 1.7 }}>
+                Schedule video or clinic consultations. Get prescriptions reviewed and delivered by licensed pharmacies.
+              </p>
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '18px' }}>
+                <Link href="/consultation" className="btn btn-primary">Book Consultation</Link>
+                <Link href="/upload" className="btn btn-glass">Upload Prescription</Link>
+              </div>
+            </div>
+            <div className="card-outline" style={{ padding: '22px', borderRadius: '16px' }}>
+              <div className="grid-2">
+                {[
+                  { title: 'Verified Doctors', desc: 'Licensed practitioners and specialists.' },
+                  { title: 'Flexible Slots', desc: 'Morning, afternoon, evening options.' },
+                  { title: 'Care Plans', desc: 'Personalized guidance and reminders.' },
+                  { title: 'Prescription Review', desc: 'Safety checks before delivery.' }
+                ].map((item) => (
+                  <div key={item.title} style={{ display: 'flex', gap: '12px' }}>
+                    <div className="icon-circle" style={{ width: '38px', height: '38px' }}>
+                      <Stethoscope size={18} color="var(--primary)" />
+                    </div>
+                    <div>
+                      <h4 style={{ margin: 0 }}>{item.title}</h4>
+                      <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)' }}>{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '0 0 100px' }}>
+        <div className="container">
+          <h2 className="section-title">Smart Health Tools</h2>
+          <p className="section-subtitle">Stay on track with reminders, dosage checks, and expert tips</p>
+          <div className="grid-3">
+            <Link href="/reminders" className="card card-hover" style={{ textDecoration: 'none' }}>
+              <div className="icon-circle" style={{ marginBottom: '16px' }}>
+                <CalendarClock size={22} color="var(--primary)" />
+              </div>
+              <h3 style={{ margin: '0 0 10px' }}>Medicine Reminders</h3>
+              <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 1.6 }}>Set daily reminders and refill alerts for your prescriptions.</p>
+            </Link>
+            <Link href="/calculator" className="card card-hover" style={{ textDecoration: 'none' }}>
+              <div className="icon-circle" style={{ marginBottom: '16px' }}>
+                <ClipboardCheck size={22} color="var(--accent)" />
+              </div>
+              <h3 style={{ margin: '0 0 10px' }}>Dosage Calculator</h3>
+              <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 1.6 }}>Estimate dosage schedules with verified guidance.</p>
+            </Link>
+            <Link href="/health-tips" className="card card-hover" style={{ textDecoration: 'none' }}>
+              <div className="icon-circle" style={{ marginBottom: '16px' }}>
+                <HeartPulse size={22} color="var(--highlight)" />
+              </div>
+              <h3 style={{ margin: '0 0 10px' }}>Daily Health Tips</h3>
+              <p style={{ margin: 0, color: 'var(--text-muted)', lineHeight: 1.6 }}>Read expert-backed wellness tips and safety advice.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section style={{ padding: '50px 0 100px' }}>
         <div className="container">
           <h2 style={{ textAlign: 'center', marginBottom: '10px' }}>Why <span className="text-gradient">MedExpress</span>?</h2>
@@ -257,19 +350,39 @@ export default function Home() {
         <div className="container">
           <h2 style={{ textAlign: 'center', marginBottom: '12px' }}>Quick Actions</h2>
           <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '50px' }}>Do the most common tasks in one tap</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }}>
-            <Link href="/upload" className="glass-panel card-hover" style={{ padding: '28px', display: 'flex', flexDirection: 'column', gap: '16px', textDecoration: 'none' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '14px', background: 'rgba(59, 130, 246, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="grid-3">
+            <Link href="/medicines" className="card card-hover" style={{ display: 'flex', flexDirection: 'column', gap: '16px', textDecoration: 'none' }}>
+              <div className="icon-circle">
+                <Pill size={22} color="var(--primary)" />
+              </div>
+              <h4 style={{ margin: 0, color: 'var(--text-main)' }}>Browse Medicines</h4>
+              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Explore verified products and categories.</p>
+              <span style={{ marginTop: 'auto', color: 'var(--primary)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                View Catalog <ArrowRight size={16} />
+              </span>
+            </Link>
+            <Link href="/consultation" className="card card-hover" style={{ display: 'flex', flexDirection: 'column', gap: '16px', textDecoration: 'none' }}>
+              <div className="icon-circle" style={{ background: 'rgba(22, 163, 74, 0.12)' }}>
+                <Stethoscope size={22} color="var(--accent)" />
+              </div>
+              <h4 style={{ margin: 0, color: 'var(--text-main)' }}>Book Consultation</h4>
+              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Get prescriptions reviewed by doctors.</p>
+              <span style={{ marginTop: 'auto', color: 'var(--accent)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                Book Slot <ArrowRight size={16} />
+              </span>
+            </Link>
+            <Link href="/upload" className="card card-hover" style={{ display: 'flex', flexDirection: 'column', gap: '16px', textDecoration: 'none' }}>
+              <div className="icon-circle">
                 <Upload size={22} color="var(--primary)" />
               </div>
               <h4 style={{ margin: 0, color: 'var(--text-main)' }}>Upload Prescription</h4>
-              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Take a photo and send it instantly.</p>
+              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Share a photo to start your order.</p>
               <span style={{ marginTop: 'auto', color: 'var(--primary)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                 Start Now <ArrowRight size={16} />
               </span>
             </Link>
-            <Link href="/track" className="glass-panel card-hover" style={{ padding: '28px', display: 'flex', flexDirection: 'column', gap: '16px', textDecoration: 'none' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '14px', background: 'rgba(16, 185, 129, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Link href="/track" className="card card-hover" style={{ display: 'flex', flexDirection: 'column', gap: '16px', textDecoration: 'none' }}>
+              <div className="icon-circle" style={{ background: 'rgba(22, 163, 74, 0.12)' }}>
                 <Truck size={22} color="var(--accent)" />
               </div>
               <h4 style={{ margin: 0, color: 'var(--text-main)' }}>Track My Order</h4>
@@ -278,12 +391,12 @@ export default function Home() {
                 Track Now <ArrowRight size={16} />
               </span>
             </Link>
-            <Link href="/contact" className="glass-panel card-hover" style={{ padding: '28px', display: 'flex', flexDirection: 'column', gap: '16px', textDecoration: 'none' }}>
-              <div style={{ width: '48px', height: '48px', borderRadius: '14px', background: 'rgba(245, 158, 11, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Link href="/contact" className="card card-hover" style={{ display: 'flex', flexDirection: 'column', gap: '16px', textDecoration: 'none' }}>
+              <div className="icon-circle" style={{ background: 'rgba(20, 184, 166, 0.12)' }}>
                 <MessageCircle size={22} color="var(--highlight)" />
               </div>
-              <h4 style={{ margin: 0, color: 'var(--text-main)' }}>Need Help?</h4>
-              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Chat with a pharmacist in minutes.</p>
+              <h4 style={{ margin: 0, color: 'var(--text-main)' }}>Pharmacist Support</h4>
+              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>Chat with a licensed pharmacist.</p>
               <span style={{ marginTop: 'auto', color: 'var(--highlight)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                 Contact Us <ArrowRight size={16} />
               </span>
@@ -294,43 +407,103 @@ export default function Home() {
 
       <section style={{ padding: '0 0 100px' }}>
         <div className="container">
-          <div className="glass-panel card-hover" style={{ padding: '40px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '28px' }}>
+          <h2 style={{ textAlign: 'center', marginBottom: '12px' }}>Trusted & Verified</h2>
+          <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '40px' }}>Compliance-backed pharmacy care you can trust</p>
+          <div className="card card-hover" style={{ padding: '40px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '28px' }}>
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }} className="promise-item">
               <div style={{ width: '46px', height: '46px', borderRadius: '14px', background: 'rgba(59, 130, 246, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <ShieldCheck size={22} color="var(--primary)" />
               </div>
               <div>
-                <h4 style={{ margin: 0 }}>Verified Medicines</h4>
-                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>Licensed pharmacy partners only.</p>
+                <h4 style={{ margin: 0 }}>Verified Pharmacy Badge</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>Licensed partners with audited billing.</p>
               </div>
             </div>
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }} className="promise-item">
               <div style={{ width: '46px', height: '46px', borderRadius: '14px', background: 'rgba(16, 185, 129, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <CalendarClock size={22} color="var(--accent)" />
+                <Shield size={22} color="var(--accent)" />
               </div>
               <div>
-                <h4 style={{ margin: 0 }}>Same-Day Delivery</h4>
-                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>Fast pickup and dispatch.</p>
+                <h4 style={{ margin: 0 }}>100% Genuine Medicines</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>Sourced from authorized distributors only.</p>
               </div>
             </div>
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }} className="promise-item">
               <div style={{ width: '46px', height: '46px', borderRadius: '14px', background: 'rgba(245, 158, 11, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <CreditCard size={22} color="var(--highlight)" />
+                <CalendarClock size={22} color="var(--highlight)" />
               </div>
               <div>
-                <h4 style={{ margin: 0 }}>Flexible Payments</h4>
-                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>UPI, cards, wallets supported.</p>
+                <h4 style={{ margin: 0 }}>Secure Checkout</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>PCI-compliant payments and encrypted data.</p>
               </div>
             </div>
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }} className="promise-item">
               <div style={{ width: '46px', height: '46px', borderRadius: '14px', background: 'rgba(99, 102, 241, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Phone size={22} color="#6366f1" />
+                <Stethoscope size={22} color="#6366f1" />
               </div>
               <div>
-                <h4 style={{ margin: 0 }}>Human Support</h4>
-                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>Real people, real help.</p>
+                <h4 style={{ margin: 0 }}>Licensed Pharmacists</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>Prescription verification and dosage review.</p>
               </div>
             </div>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }} className="promise-item">
+              <div style={{ width: '46px', height: '46px', borderRadius: '14px', background: 'rgba(20, 184, 166, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Truck size={22} color="var(--highlight)" />
+              </div>
+              <div>
+                <h4 style={{ margin: 0 }}>Cold-Chain Handling</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>Temperature-safe packaging for sensitive meds.</p>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }} className="promise-item">
+              <div style={{ width: '46px', height: '46px', borderRadius: '14px', background: 'rgba(59, 130, 246, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <MessageCircle size={22} color="var(--primary)" />
+              </div>
+              <div>
+                <h4 style={{ margin: 0 }}>Care Team Support</h4>
+                <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem' }}>WhatsApp and phone help from experts.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '0 0 120px' }}>
+        <div className="container">
+          <h2 style={{ textAlign: 'center', marginBottom: '12px' }}>Customer Testimonials</h2>
+          <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '50px' }}>Trusted by families for safe, verified medicine delivery</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }}>
+            {[
+              {
+                name: 'Rakesh Verma',
+                role: 'Domariyaganj',
+                quote: 'Clear updates and verified medicines. Their pharmacist called to confirm my prescription.'
+              },
+              {
+                name: 'Shalini Sharma',
+                role: 'Basti',
+                quote: 'Quick delivery and professional service. The consultation booking was smooth and helpful.'
+              },
+              {
+                name: 'Imran Ali',
+                role: 'Nearby Towns',
+                quote: 'Reliable service with safe packaging. I trust them for my family’s monthly medicines.'
+              }
+            ].map((testimonial) => (
+              <div key={testimonial.name} className="card card-hover" style={{ padding: '28px' }}>
+                <Quote size={28} color="var(--primary)" style={{ marginBottom: '16px' }} />
+                <p style={{ margin: '0 0 20px', color: 'var(--text-muted)', lineHeight: 1.7 }}>{testimonial.quote}</p>
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(59, 130, 246, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, color: 'var(--primary)' }}>
+                    {testimonial.name.slice(0, 1)}
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: 700, color: 'var(--text-main)' }}>{testimonial.name}</div>
+                    <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>{testimonial.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -343,20 +516,24 @@ export default function Home() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {[
               { 
-                q: "How do I upload my prescription?", 
-                a: "Simply click the 'Order Now' button, take a clear photo of your prescription, and upload it. Our team will review it instantly." 
+                q: "Do you deliver without prescription?", 
+                a: "No. We deliver medicines only against valid prescriptions verified by a licensed pharmacist." 
               },
               { 
-                q: "Do you verify prescriptions?", 
-                a: "Yes, every prescription is verified by our licensed pharmacists before we process the order to ensure your safety." 
+                q: "How long does delivery take?", 
+                a: "Orders are typically delivered next day from Lucknow to Domariyaganj and nearby towns." 
               },
               { 
-                q: "Can I track my delivery?", 
-                a: "Absolutely! You'll receive live updates as your personal shopper picks up your medicines and heads to your doorstep." 
+                q: "Can I book a doctor consultation?", 
+                a: "Yes. Book verified doctors and get prescriptions reviewed before delivery." 
               },
               { 
-                q: "What payment methods do you accept?", 
-                a: "We accept all major UPI apps, credit/debit cards, and popular digital wallets for a seamless checkout experience." 
+                q: "Do you provide medicine reminders?", 
+                a: "Yes. Set reminders and refill alerts from your dashboard." 
+              },
+              { 
+                q: "Are medicines genuine?", 
+                a: "Yes. All medicines are sourced from licensed partner pharmacies with verified billing." 
               }
             ].map((faq, i) => (
               <div key={i} className="glass-panel" style={{ overflow: 'hidden', transition: 'all 0.3s ease' }}>
@@ -384,7 +561,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA SECTION */}
       <section style={{ padding: '60px 0', position: 'relative' }}>
         <div className="container">
           <TiltCard style={{
@@ -393,12 +569,12 @@ export default function Home() {
             border: '1px solid rgba(255,255,255,0.1)'
           }}>
             <div style={{ position: 'relative', zIndex: 2 }}>
-              <h2 style={{ fontSize: '3rem', marginBottom: '24px', color: 'white' }}>Ready to Experience the Future?</h2>
+              <h2 style={{ fontSize: '3rem', marginBottom: '24px', color: 'white' }}>Upload Your Prescription Today</h2>
               <p style={{ fontSize: '1.2rem', color: 'rgba(255,255,255,0.8)', marginBottom: '40px', maxWidth: '600px', margin: '0 auto 40px' }}>
-                Join the healthcare revolution today.
+                Get genuine medicines delivered from Lucknow to Domariyaganj with next-day delivery.
               </p>
               <Link href="/upload" className="btn btn-highlight" style={{ padding: '18px 40px', fontSize: '1.2rem' }}>
-                Get Started <ArrowRight size={20} />
+                Upload Prescription <ArrowRight size={20} />
               </Link>
             </div>
           </TiltCard>
@@ -413,6 +589,10 @@ export default function Home() {
           .bento-grid {
             grid-template-columns: 1fr !important;
             grid-template-rows: auto !important;
+          }
+          .bento-grid > .glass-panel {
+            grid-column: 1 / -1 !important;
+            grid-row: auto !important;
           }
         }
       `}</style>
