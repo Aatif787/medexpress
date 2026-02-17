@@ -18,13 +18,22 @@ export const viewport = {
 };
 
 export default function RootLayout({ children }) {
+  const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+  const content = (
+    <html lang="en">
+      <body className={`${inter.variable} ${poppins.variable} ${montserrat.variable}`}>
+        <ClientLayout>{children}</ClientLayout>
+      </body>
+    </html>
+  );
+
+  if (!clerkPublishableKey) {
+    return content;
+  }
+
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={`${inter.variable} ${poppins.variable} ${montserrat.variable}`}>
-          <ClientLayout>{children}</ClientLayout>
-        </body>
-      </html>
+    <ClerkProvider publishableKey={clerkPublishableKey}>
+      {content}
     </ClerkProvider>
   );
 }
