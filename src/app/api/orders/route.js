@@ -4,6 +4,7 @@ import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import connectDB from '@/lib/mongodb';
 import Order from '@/models/Order';
+import { sendWhatsAppMessage } from '@/lib/sendWhatsApp';
 
 export async function GET() {
     try {
@@ -65,6 +66,27 @@ export async function POST(request) {
             subscription,
             status: 'Received',
         });
+
+        // Send WhatsApp notification
+        try {
+            const adminNumber = process.env.WHATSAPP_NUMBER || '8601439557';
+            // Ensure country code
+            const formattedAdminNumber = adminNumber.startsWith('+') ? adminNumber : `+91${adminNumber}`;
+            
+            const message = `New Prescription Uploaded!
+            
+Order ID: ${orderId}
+Name: ${name}
+Mobile: ${mobile}
+Address: ${address}
+Notes: ${notes || 'None'}
+Link: ${process.env.NEXT_PUBLIC_SITE_URL || 'https://medexpress.vercel.app'}${prescriptionUrl}`;
+
+            await sendWhatsAppMessage(`whatsapp:${formattedAdminNumber}`, message);
+        } catch (whatsappError) {
+            console.error('Failed to send WhatsApp notification:', whatsappError);
+            // Don't fail the order if notification fails
+        }
 
         return NextResponse.json({
             success: true,

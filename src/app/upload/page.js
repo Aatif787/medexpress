@@ -83,12 +83,6 @@ export default function UploadPage() {
             if (res.ok) {
                 setSuccess(true);
                 setOrderId(result.orderId);
-
-                // Construct WhatsApp message
-                const message = `New Prescription Uploaded!%0A%0AOrder ID: ${result.orderId}%0AName: ${formData.name}%0AMobile: ${formData.mobile}%0AAddress: ${formData.address}%0ANotes: ${formData.notes || 'None'}`;
-                
-                // Open WhatsApp
-                window.open(`https://wa.me/918601439557?text=${message}`, '_blank');
             } else {
                 setError(result.error || 'Something went wrong');
             }
