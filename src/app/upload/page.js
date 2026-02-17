@@ -87,7 +87,8 @@ export default function UploadPage() {
                 setError(result.error || 'Something went wrong');
             }
         } catch (err) {
-            setError('Failed to upload. Please try again.');
+            console.error('Upload error:', err);
+            setError(err.message || 'Failed to upload. Please try again.');
         } finally {
             setLoading(false);
         }

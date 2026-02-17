@@ -2,12 +2,10 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { supabase } from '@/lib/supabaseClient';
 
 export default function DashboardPage() {
     const { user, loading, logout } = useAuth();
     const router = useRouter();
-    const [orders, setOrders] = useState([]);
 
     useEffect(() => {
         if (!loading && !user) {
@@ -37,7 +35,7 @@ export default function DashboardPage() {
                 <div className="glass-panel" style={{ padding: '40px', marginTop: '40px' }}>
                     <h3>Your Account Details</h3>
                     <p><strong>Email:</strong> {user.email}</p>
-                    <p><strong>Mobile:</strong> {user.user_metadata?.mobile || 'N/A'}</p>
+                    <p><strong>Mobile:</strong> {user.mobile || 'Not provided'}</p>
                     
                     <button 
                         onClick={handleLogout}

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
+import { currentUser } from '@clerk/nextjs/server';
 import connectDB from '@/lib/mongodb';
 import Order from '@/models/Order';
 import { sendWhatsAppMessage } from '@/lib/sendWhatsApp';
@@ -55,8 +56,24 @@ export async function POST(request) {
         const prescriptionUrl = `/uploads/${filename}`;
         const orderId = `MED${Date.now().toString(36).toUpperCase()}${Math.random().toString(36).substring(2, 5).toUpperCase()}`;
 
+        // Get current user if logged in
+        let userId = null;
+        let userEmail = null;
+        try {
+            const user = await currentUser();
+            if (user) {
+                userId = user.id;
+                userEmail = user.primaryEmailAddress?.emailAddress;
+            }
+        } catch (authError) {
+            console.error('Error fetching user:', authError);
+            // Continue as guest
+        }
+
         const order = await Order.create({
             orderId,
+            userId,
+            userEmail,
             name,
             mobile,
             address,
@@ -96,6 +113,9 @@ Link: ${process.env.NEXT_PUBLIC_SITE_URL || 'https://medexpress.vercel.app'}${pr
 
     } catch (error) {
         console.error('Order creation error:', error);
-        return NextResponse.json({ error: 'Failed to create order' }, { status: 500 });
+        return NextResponse.json({ 
+            error: 'Failed to create order', 
+            details: error.message 
+        }, { status: 500 });
     }
 }

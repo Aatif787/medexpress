@@ -5,6 +5,7 @@ import { Menu, X, Pill, LogIn, User, LogOut, ChevronRight, Search, TrendingUp } 
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { useAuth } from '@/context/AuthContext';
+import { UserButton } from '@clerk/nextjs';
 
 const medicines = [
     "Paracetamol", "Dolo 650", "Azithromycin", "Cough Syrup", "Vitamin C",
@@ -89,36 +90,7 @@ export default function Header() {
                             </button>
 
                             {user ? (
-                                <div style={{ position: 'relative' }}>
-                                    <button
-                                        onClick={() => setUserMenuOpen(!userMenuOpen)}
-                                        style={{
-                                            display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.1)',
-                                            border: '1px solid rgba(255,255,255,0.1)', padding: '8px 16px', borderRadius: '20px',
-                                            color: 'var(--text-main)', cursor: 'pointer', fontWeight: 600
-                                        }}
-                                    >
-                                        <div style={{ width: '24px', height: '24px', background: 'var(--primary)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                            <User size={14} color="white" />
-                                        </div>
-                                        <span>{user.name.split(' ')[0]}</span>
-                                    </button>
-
-                                    {userMenuOpen && (
-                                        <div className="glass-panel" style={{
-                                            position: 'absolute', top: '100%', right: 0, marginTop: '12px',
-                                            padding: '8px', minWidth: '180px', display: 'flex', flexDirection: 'column', gap: '4px',
-                                            animation: 'float 0.3s ease-out forwards'
-                                        }}>
-                                            <Link href="/my-orders" className="menu-item" onClick={() => setUserMenuOpen(false)}>
-                                                <div className="icon-box"><User size={14} /></div> My Orders
-                                            </Link>
-                                            <button onClick={() => { logout(); setUserMenuOpen(false); }} className="menu-item danger">
-                                                <div className="icon-box"><LogOut size={14} /></div> Logout
-                                            </button>
-                                        </div>
-                                    )}
-                                </div>
+                                <UserButton afterSignOutUrl="/" />
                             ) : (
                                 <Link href="/login" className="btn btn-primary" style={{ padding: '10px 20px', fontSize: '0.9rem', display: 'none' }} id="desktop-login">
                                     Login <ChevronRight size={16} />
@@ -216,9 +188,6 @@ export default function Header() {
                         <Link href="/my-orders" onClick={() => setMobileOpen(false)} style={{ fontSize: '1.5rem', fontWeight: 700, color: 'white', textDecoration: 'none' }}>
                             My Orders
                         </Link>
-                        <button onClick={() => { logout(); setMobileOpen(false); }} className="btn btn-primary" style={{ marginTop: '20px' }}>
-                            Logout
-                        </button>
                     </>
                 ) : (
                     <Link href="/login" onClick={() => setMobileOpen(false)} className="btn btn-primary btn-lg">

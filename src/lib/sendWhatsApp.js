@@ -10,6 +10,11 @@ export async function sendWhatsAppMessage(to, message) {
         return { success: false, error: 'Twilio credentials missing' };
     }
 
+    if (!accountSid.startsWith('AC')) {
+        console.warn('Invalid Twilio Account SID. WhatsApp message not sent.');
+        return { success: false, error: 'Invalid Twilio Account SID' };
+    }
+
     try {
         const client = twilio(accountSid, authToken);
         

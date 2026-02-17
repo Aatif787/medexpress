@@ -1,6 +1,6 @@
+import { ClerkProvider } from '@clerk/nextjs'
 import './globals.css';
 import { Outfit } from "next/font/google";
-import Link from 'next/link';
 import ClientLayout from "./ClientLayout";
 
 const outfit = Outfit({ subsets: ["latin"] });
@@ -17,10 +17,12 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={outfit.className}>
-        <ClientLayout>{children}</ClientLayout>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={outfit.className}>
+          <ClientLayout>{children}</ClientLayout>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
